@@ -1,3 +1,107 @@
-/* Limpio todo con reset y defino mis variables de colores y tipografia */
+/* Calculadora — estilos tomados del CodePen de Zell Liew (starter pLgmGL) */
 
-/* Tu codigo aqui */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+html {
+    font-size: 175%;
+    font-weight: 300;
+    line-height: 1.3;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: linear-gradient(236deg, #f2f3f5, #d7dade);
+}
+
+.calculator {
+    width: 100%;
+    max-width: 20em;
+    margin: 16px;
+    border-radius: 12px;
+    box-shadow: 0 0 40px 0 rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+}
+
+.calculator__display {
+    /* output es inline por defecto; sin block la barra negra no llena el ancho */
+    display: block;
+    background-color: #222222;
+    color: #fff;
+    font-size: 1.714285714em;
+    padding: 0.5em 0.75em;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.calculator__display.is-long {
+    font-size: 1.05em;
+}
+
+.calculator__keys {
+    /* las líneas entre teclas son este fondo asomando entre gaps de 1px */
+    background-color: #999;
+    display: grid;
+    grid-gap: 1px;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.calculator__keys > button {
+    border: 0;
+    background-color: #fff;
+    padding: 0.5em 1.25em;
+    position: relative;
+    text-align: center;
+    font-family: inherit;
+    font-size: inherit;
+    appearance: none;
+    cursor: pointer;
+    user-select: none;
+}
+
+/* velo oscurecedor al pulsar y sobre el operador en espera */
+.calculator__keys > button:active::before,
+.calculator__keys > .is-depressed::before,
+.calculator__keys > .is-pressed::before {
+    background-color: rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.5) inset;
+    content: "";
+    position: absolute;
+    inset: 0;
+    opacity: 0.3;
+    z-index: 1;
+}
+
+.key--operator {
+    background-color: #eee;
+}
+
+.key--equal {
+    background-image: linear-gradient(to bottom, #fe886a, #ff7033);
+    grid-column: -2;
+    grid-row: 2 / span 4;
+}
+
+.calculator__keys > button:focus-visible {
+    outline: 2px solid #222;
+    outline-offset: -4px;
+    z-index: 2;
+}
+
+@media (max-height: 700px) {
+    html { font-size: 130%; }
+}
